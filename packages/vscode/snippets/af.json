@@ -1,0 +1,63 @@
+{
+  "Aufgabe": {
+    "prefix": "item",
+    "description": "Aufgabe mit einer Antwort und ihrer Kodierung",
+    "body": [
+      "item ${1:name} \"${2:Titel}\" {",
+      "  p \"${3:Aufgabentext}\"",
+      "  ${4:antwort} = ${5:Choice}(label: \"${6:Frage}\", options: [\"${7:A}\", \"${8:B}\"])",
+      "}",
+      "",
+      "coding ${1:name} {",
+      "  ${4:antwort}: correct(${4:antwort} == {${9:1}})",
+      "}",
+      "$0"
+    ]
+  },
+  "Komponente": {
+    "prefix": "component",
+    "description": "Eigener Baustein mit Antwort; erscheint in der Palette",
+    "body": [
+      "/** ${1:Kurzbeschreibung} */",
+      "component ${2:Name}(label: Content): response ${3:Text} {",
+      "  state wert: ${3:Text} = ${4:\"\"}",
+      "  input(bind: wert, label: label)",
+      "  response wert",
+      "}",
+      "$0"
+    ]
+  },
+  "Darstellung": {
+    "prefix": "component-view",
+    "description": "Eigener Baustein ohne Antwort (nur Darstellung), mit Inhalt",
+    "body": [
+      "/** ${1:Kurzbeschreibung} */",
+      "component ${2:Name}(${3:heading: Content}) children {",
+      "  section(heading: heading) {",
+      "    children",
+      "  }",
+      "}",
+      "$0"
+    ]
+  },
+  "Kodierung": {
+    "prefix": "coding",
+    "description": "Kodierung einer Aufgabe",
+    "body": [
+      "coding ${1:name} {",
+      "  ${2:antwort}: correct(${3:manual(\"Kriterium\")})",
+      "}",
+      "$0"
+    ]
+  },
+  "Codes": {
+    "prefix": "codes",
+    "description": "Kodierregel mit eigenen Codes",
+    "body": [
+      "${1:antwort}: codes(",
+      "  code(1, \"${2:richtig}\", score: 1, when: ${3:false}),",
+      "  code(2, \"${4:teilweise}\", when: ${5:false})",
+      ")"
+    ]
+  }
+}

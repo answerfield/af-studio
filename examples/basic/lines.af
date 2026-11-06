@@ -1,0 +1,26 @@
+// Text mit Zeilennummern
+//
+// Zeigt: lines. Jedes Kind ist eine feste Zeile, die erste und jede fünfte tragen ihre Nummer, damit Fragen auf
+// „Zeile 7“ verweisen können (wie in Lesetests üblich). Bei Vergrößerung umbrechen lange Zeilen, die Nummern bleiben.
+
+item zeilen "Der Brief" {
+  stimulus(label: "Der Brief") {
+    lines(every: 5) {
+      "Lena fand den Brief am Montag unter der Tür."
+      "Der Umschlag war alt und an den Ecken eingerissen,"
+      "die Schrift darauf kannte sie nicht."
+      "Sie drehte ihn um und hielt ihn gegen das Licht."
+      "Erst am Abend, als alle schliefen,"
+      "öffnete sie ihn vorsichtig mit einem Messer."
+      "Darin lag nur ein Foto: ihr Großvater als Kind,"
+      "vor einem Haus, das es heute nicht mehr gibt."
+    }
+  }
+  wann = Choice("Wann öffnet Lena den Brief?", ["am Morgen", "am Abend", "in der Schule"])
+  wer = Gap("Wen zeigt das Foto (Zeile 7)?")
+}
+
+coding zeilen {
+  wann: correct(wann == {"am Abend"})
+  wer: correct(accept(wer, "(ihr/ihren/den) Großvater/Opa"))
+}

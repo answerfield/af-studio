@@ -1,0 +1,25 @@
+// Lernreihe „Brüche entdecken“ für eine Lern-App
+//
+// Zeigt: dieselbe Sprache für Lernen statt Testen. Die Lernreihe ist ein Testheft ohne Zeitlimit; die Lern-App nutzt
+// es nur als Inhaltsverzeichnis: Teile sind Stationen, die Aufgaben werden einzeln geübt. Jede Aufgabe hat
+// Rückmeldungen, Tipps und eine Lösung an ihrer Kodierung (Sprachreferenz, „Rückmeldung beim Üben“).
+
+booklet brueche_lernen "Brüche entdecken" {
+  part("Anteile sehen") {
+    lb_anteil
+    lb_faerben
+    lb_ganzes
+  }
+  part("Gleich viel wert") {
+    lb_gleichwertig
+    lb_kuerzen
+    lb_vergleich
+  }
+  part("Auf dem Zahlenstrahl") {
+    lb_strahl
+    lb_pizza
+  }
+  part("Brüche in der Fläche") {
+    lb_dreieck
+  }
+}

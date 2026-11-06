@@ -1,0 +1,35 @@
+// Station 3: Auf dem Zahlenstrahl
+
+item lb_strahl "Ein Viertel finden" {
+  page {
+    p "Markiere 1/4 auf dem Zahlenstrahl."
+    mark = NumberLine(from: 0, to: 1, step: 1/8, marks: [0, 1/2, 1], label: "Zahlenstrahl von 0 bis 1")
+  }
+}
+
+coding lb_strahl {
+  mark: codes(
+    code(1, "richtig", score: 1, when: mark == 1/4, feedback: "Genau! 1/4 liegt in der Mitte zwischen 0 und 1/2."),
+    code(2, "drei Viertel", when: mark == 3/4, feedback: "Das ist 3/4. Gesucht ist 1/4 – näher an der 0."),
+    otherwise: "Teile die Strecke von 0 bis 1 in 4 gleiche Stücke.",
+    hints: ["1/4 ist die Hälfte von 1/2."],
+    solution: "in der Mitte zwischen 0 und 1/2"
+  )
+}
+
+item lb_pizza "Mehr als ein Ganzes" {
+  page {
+    p "Tom isst 3 halbe Pizzen. Markiere auf dem Zahlenstrahl, wie viele Pizzen das sind."
+    mark = NumberLine(from: 0, to: 2, step: 1/4, marks: [0, 1, 2], label: "Zahlenstrahl von 0 bis 2")
+  }
+}
+
+coding lb_pizza {
+  mark: codes(
+    code(1, "richtig", score: 1, when: mark == 3/2, feedback: "Super: 3/2 sind eineinhalb Pizzen."),
+    code(2, "eine halbe", when: mark == 1/2, feedback: "Das ist nur eine halbe Pizza. Tom isst drei halbe."),
+    otherwise: "Zähle in halben Schritten: 1/2, 2/2, 3/2 …",
+    hints: ["Zwei halbe Pizzen sind eine ganze."],
+    solution: "3/2 = 1 1/2"
+  )
+}

@@ -1,0 +1,22 @@
+{
+  "name": "af-studio",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/designer",
+    "packages/studio-ui",
+    "apps/playground",
+    "packages/vscode"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run typecheck && npm test --workspaces --if-present",
+    "typecheck": "tsc -b && tsc -p apps/playground && tsc -p packages/vscode"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2"
+  }
+}

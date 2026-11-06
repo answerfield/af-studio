@@ -1,0 +1,47 @@
+// Station 4: Brüche in der Fläche
+//
+// Technisch der Kern dieser Station: Die Kodierung fragt nicht, wo C liegt, sondern was dabei herauskommt, nämlich
+// die exakte Fläche als Bruch mit area(…). Das Dreieck folgt dem Punkt beim Ziehen; die Rückmeldung nennt die Fläche
+// des gezeichneten Dreiecks. Mit Parametern entstehen neue Zahlen: ungerade Seiten ergeben halbe Kästchen (Brüche),
+// in Leichter Sprache gerade Grundseiten und damit ganze Kästchen.
+
+/** Dreieck ABC auf Karopapier: A und B fest, C ziehen, klicken oder mit den Pfeiltasten setzen. Antwort: C. */
+component TriangleC(a: Point?, b: Point?, label: Content, state c: Point? = none): response Point? {
+  plane(x: 0 .. 8, y: 0 .. 6, grid: 1, width: 24em) {
+    polygon(points: [a, b, c], tone: accent)
+    dot(at: a, label: "A")
+    dot(at: b, label: "B")
+    value(bind: c, min: (0 | 0), max: (8 | 6), step: 1, label: label, display: "C")
+  }
+  response c
+}
+
+item lb_dreieck(base: Int = 3, height: Int = 3) "Dreieck aus halben Kästchen" {
+  versions(when: base in 2 .. 6 and height in 1 .. 5
+                 and (if easy_language in accommodations() then base in {2, 4, 6} and height <= 3
+                      else base in {3, 5} and height in {1, 3, 5}))
+  page {
+    p {
+      wording("Die Strecke AB ist {base} Kästchen lang. Ziehe den Punkt C so, dass das Dreieck ABC genau "
+              + base * height / 2 + " Kästchen groß ist.",
+              easy: "Ziehe den Punkt C. Das Dreieck soll " + base * height / 2 + " Kästchen groß sein.")
+    }
+    corner = TriangleC(a: (1 | 1), b: (1 + base | 1), label: "Eckpunkt C")
+  }
+}
+
+coding lb_dreieck {
+  corner: codes(
+    code(1, "richtig", score: 1, when: area([(1 | 1), (1 + base | 1), corner]) == base * height / 2,
+         feedback: "Genau " + base * height / 2 + " Kästchen! Probe: {base} · {height} : 2 = " + base * height / 2 + "."),
+    code(2, "zu groß", when: area([(1 | 1), (1 + base | 1), corner]) > base * height / 2,
+         feedback: "Dein Dreieck ist " + area([(1 | 1), (1 + base | 1), corner]) + " Kästchen groß – zu groß."),
+    code(3, "zu klein", when: area([(1 | 1), (1 + base | 1), corner]) < base * height / 2,
+         feedback: "Dein Dreieck ist " + area([(1 | 1), (1 + base | 1), corner]) + " Kästchen groß – zu klein."),
+    otherwise: "Setze den Punkt C in das Karopapier.",
+    hints: [wording("Die Höhe ist der Abstand von C zur Strecke AB. Wie hoch muss C liegen?",
+                    easy: "Zähle die Kästchen. Halbe Kästchen zählen halb."),
+            "Rechne rückwärts: " + base * height / 2 + " mal 2, dann geteilt durch {base}. Das ist die Höhe."],
+    solution: "C {height} Kästchen über AB, zum Beispiel " + (1 | 1 + height) + "."
+  )
+}

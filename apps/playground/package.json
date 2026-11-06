@@ -1,0 +1,30 @@
+{
+  "name": "@answerfield/playground",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web-Editor: answerfield-Quelltext links, Vorschau rechts; Sprache und Compiler laufen im Browser",
+  "scripts": {
+    "start": "node build.mjs --serve",
+    "build": "node build.mjs --minify"
+  },
+  "dependencies": {
+    "@answerfield/bundle": "https://github.com/answerfield/af-format/releases/download/v0.1.0/answerfield-bundle-0.1.0.tgz",
+    "@answerfield/compiler": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-compiler-0.1.0.tgz",
+    "@answerfield/editing": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-editing-0.1.0.tgz",
+    "@answerfield/language": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-language-0.1.0.tgz",
+    "@answerfield/studio-ui": "0.1.0",
+    "@codemirror/autocomplete": "^6.20.4",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/lint": "^6.9.7",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.15",
+    "@lezer/highlight": "^1.2.5",
+    "codemirror": "^6.0.2",
+    "langium": "~4.4.0",
+    "vscode-languageserver-textdocument": "~1.0.13"
+  },
+  "devDependencies": {
+    "esbuild": "~0.28.2"
+  }
+}

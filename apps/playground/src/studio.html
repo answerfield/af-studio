@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>answerfield Vorschau</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: var(--vscode-editor-background, #fff); }
+    /* The studio chrome follows VS Code's theme variables; in dark mode the page sets them (the item stays light). */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --vscode-foreground: #e3e6eb; --vscode-descriptionForeground: #9aa3b2; --vscode-editor-background: #16191f;
+        --vscode-sideBar-background: #1e222a; --vscode-panel-border: #343a46; --vscode-errorForeground: #f07a6e;
+        --vscode-button-background: #3b74d6; --vscode-button-foreground: #fff;
+        --vscode-button-secondaryBackground: #2a2f39; --vscode-button-secondaryForeground: #e3e6eb;
+        --vscode-focusBorder: #7fa8ef;
+        color-scheme: dark;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="studio"></div>
+  <script src="studio.js"></script>
+</body>
+</html>

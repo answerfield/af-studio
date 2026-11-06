@@ -1,0 +1,60 @@
+// Station 1: Anteile sehen
+
+item lb_anteil "Welcher Bruch ist das?" {
+  page {
+    p "Ein Kuchen ist in gleich große Stücke geteilt. Die gefärbten Stücke sind schon gegessen."
+    Pie(parts: 4, filled: 1, label: "Kreis mit 4 gleichen Teilen, 1 Teil gefärbt")
+    pick = Choice(label: wording("Welcher Anteil ist gegessen?", easy: "Wie viel ist gegessen?"),
+                  options: ["1/3", "1/4", "4/1"])
+  }
+}
+
+coding lb_anteil {
+  pick: codes(
+    code(1, "richtig", score: 1, when: pick == {"1/4"}, feedback: "Genau: 1 von 4 gleichen Stücken ist 1/4."),
+    code(2, "Teile ohne das gefärbte gezählt", when: pick == {"1/3"},
+         feedback: wording("Unten steht, in wie viele Stücke der ganze Kuchen geteilt ist – alle zusammen.",
+                           easy: "Zähle alle Stücke. Auch das bunte.")),
+    code(3, "Zähler und Nenner vertauscht", when: pick == {"4/1"},
+         feedback: "4/1 wären vier ganze Kuchen. Oben steht, wie viele Stücke gemeint sind."),
+    hints: ["Zähle zuerst alle Stücke. Diese Zahl kommt nach unten."],
+    solution: "1/4"
+  )
+}
+
+item lb_faerben "Färbe den Anteil" {
+  page {
+    p "Färbe 2/3 des Kreises ein. Tippe dazu auf die Teile."
+    shaded = FractionShading(parts: 6, label: "Kreis mit 6 gleichen Teilen")
+  }
+}
+
+coding lb_faerben {
+  shaded: codes(
+    code(1, "richtig", score: 1, when: shaded == 4, feedback: "Super! 4 von 6 Teilen sind 2/3."),
+    code(2, "Zähler als Anzahl übernommen", when: shaded == 2,
+         feedback: wording("Der Kreis hat 6 Teile, nicht 3. Wie viele Sechstel sind 2/3?",
+                           easy: "Der Kreis hat 6 Teile. Du brauchst mehr als 2.")),
+    otherwise: "Teile den Kreis in Gedanken in 3 gleich große Stücke.",
+    hints: ["1/3 des Kreises sind 2 Teile.", "2/3 sind doppelt so viel wie 1/3."],
+    solution: "4 Teile färben"
+  )
+}
+
+item lb_ganzes "Wie viele fehlen?" {
+  page {
+    p "Lena hat schon 3/8 einer Tafel Schokolade gegessen."
+    p { "Wie viel ist noch da? " rest = NumberGap(label: "Anteil, der noch da ist", width: 4em) }
+  }
+}
+
+coding lb_ganzes {
+  rest: codes(
+    code(1, "richtig", score: 1, when: rest == 5/8, feedback: "Richtig: 8/8 − 3/8 = 5/8."),
+    code(2, "Gegessenes statt Rest", when: rest == 3/8,
+         feedback: "3/8 hat Lena schon gegessen. Gefragt ist, was noch übrig ist."),
+    otherwise: "Die ganze Tafel sind 8/8.",
+    hints: ["Wie viele Achtel hat die ganze Tafel?", "Rechne 8 − 3. Der Nenner bleibt 8."],
+    solution: "5/8"
+  )
+}

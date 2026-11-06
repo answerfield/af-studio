@@ -1,0 +1,10 @@
+// Bausteine der Lernreihe: Kreisbild eines Bruchs (nur Anzeige)
+
+/** Kreis aus `parts` gleichen Teilen, davon `filled` gefärbt. Ohne Antwort; `label` beschreibt das Bild. */
+component Pie(parts: Int, filled: Int, label: Content, width: Size = 9em) {
+  plane(x: -1.1 .. 1.1, y: -1.1 .. 1.1, width: width) {
+    group(role: group, label: label) {
+      for i in 1 .. parts { sector(i, of: parts, tone: if i <= filled then accent else neutral) }
+    }
+  }
+}

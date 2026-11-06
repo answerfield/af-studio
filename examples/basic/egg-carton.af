@@ -1,0 +1,27 @@
+// Beispielaufgabe: dieselbe Aufgabe in drei Sprachstufen, mit Kodierung und Rückmeldung
+// zum Üben. Eigene Aufgabe; die Vereinfachung folgt gängigen Regeln für Einfache und Leichte Sprache
+// (kürzere Sätze, Frage in zwei Schritten, Optionen bleiben an ihrer Stelle).
+
+item eierkarton "Eierkarton" {
+  p {
+    "In einen Eierkarton passen 6 Eier. Herr Lindqvist kauft für den Wandertag 4 volle Kartons."
+    variant(simple_language) "In einen Karton passen 6 Eier. Herr Lindqvist kauft 4 volle Kartons."
+    variant(easy_language) { p "Ein Karton hat 6 Eier." p "Herr Lindqvist kauft 4 Kartons." }
+  }
+  count = Choice(label: wording("Mit welcher Rechnung kann man die Anzahl der Eier berechnen?",
+                                simple: "Wie viele Eier sind es? Welche Rechnung passt?",
+                                easy: "Wie viele Eier sind das? Welche Rechnung passt?"),
+                 options: ["6 + 4", "6 · 4", "6 − 4", "6 : 4"])
+}
+
+coding eierkarton {
+  count: codes(
+    code(1, "richtig", score: 1, when: count == {"6 · 4"}, feedback: "Genau: 4 Kartons mit je 6 Eiern sind 6 · 4 = 24 Eier."),
+    code(2, "addiert", when: count == {"6 + 4"},
+         feedback: wording("6 + 4 wären nur 10 Eier. Es sind aber 4 volle Kartons mit je 6 Eiern.",
+                           easy: "6 + 4 ist zu wenig. Jeder Karton hat 6 Eier.")),
+    otherwise: "Überlege: Wie viele Eier sind in 2 Kartons? Und in 4?",
+    hints: ["Jeder Karton hat 6 Eier. Zähle 6, 12, … für jeden Karton weiter."],
+    solution: "6 · 4 = 24"
+  )
+}

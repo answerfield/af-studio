@@ -1,0 +1,31 @@
+// Messen am Bildschirm
+//
+// Zeigt: Lineal und Geodreieck aus std in einer Ebene. Gemessen wird in Koordinaten (1 = 1 cm der Zeichnung),
+// nicht in Bildschirmpixeln; das Ergebnis trägt man in eine Lücke ein. Dazu die Formen Strecke, Gerade und
+// rechter Winkel, alle aus polygon gebaut.
+
+item messen "Strecke und Winkel messen" {
+  p "Miss die Länge der Strecke AB und die Größe des Winkels bei C. Verschiebe und drehe dazu Lineal und Geodreieck."
+  plane(x: 0 .. 15, y: 0 .. 10, width: 36em) {
+    segment((2 | 8), (9 | 8))
+    dot(at: (2 | 8), label: "A")
+    dot(at: (9 | 8), label: "B")
+    segment((9 | 3), (13 | 3))
+    segment((9 | 3), (12 | 6))
+    dot(at: (9 | 3), label: "C")
+    line(a: (1 | 1), b: (5 | 1))
+    caption(at: (3 | 1.5), text: "g")
+    right_angle(vertex: (3 | 1), a: (5 | 1), b: (3 | 3))
+    segment((3 | 1), (3 | 4))
+    Ruler(at: (1 | 5), min: (0 | 0), max: (15 | 10))
+    SetSquare(at: (11 | 7), min: (0 | 0), max: (15 | 10))
+  }
+  ab = NumberGap("Länge von AB in cm", width: 4em)
+  winkel = NumberGap("Winkel bei C in Grad", width: 4em)
+}
+
+coding messen {
+  // Messgenauigkeit am Bildschirm: ± 1 mm bzw. ± 1°
+  ab: correct(ab in 69/10 .. 71/10)
+  winkel: correct(winkel in 44 .. 46)
+}

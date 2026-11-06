@@ -1,0 +1,9 @@
+**
+!out/**/*.cjs
+!out/studio/*.js
+!media/**
+!syntaxes/**
+!snippets/**
+!language-configuration.json
+!package.json
+!README.md

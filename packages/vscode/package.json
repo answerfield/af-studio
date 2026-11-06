@@ -1,0 +1,170 @@
+{
+  "name": "af-vscode",
+  "displayName": "answerfield",
+  "description": "Sprachunterstützung für die Aufgabensprache answerfield (.af)",
+  "version": "0.1.0",
+  "publisher": "indibit",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./out/extension.cjs",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "af",
+        "aliases": [
+          "answerfield",
+          "af"
+        ],
+        "extensions": [
+          ".af"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "af",
+        "scopeName": "source.af",
+        "path": "./syntaxes/af.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "af.openPreview",
+        "title": "Vorschau und Design öffnen",
+        "category": "answerfield",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "af.openLibrary",
+        "title": "Bibliothek öffnen (Prelude, std)",
+        "category": "answerfield"
+      },
+      {
+        "command": "af.revealNode",
+        "title": "Knoten auswählen",
+        "category": "answerfield"
+      },
+      {
+        "command": "af.newItem",
+        "title": "Neue Aufgabe",
+        "category": "answerfield",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "af.newComponent",
+        "title": "Neue Komponente",
+        "category": "answerfield"
+      }
+    ],
+    "configurationDefaults": {
+      "[af]": {
+        "editor.semanticHighlighting.enabled": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": false
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "af.openPreview",
+          "when": "editorLangId == af",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "af.openPreview",
+          "when": "resourceExtname == .af",
+          "group": "navigation"
+        },
+        {
+          "command": "af.newItem",
+          "group": "navigation@9"
+        },
+        {
+          "command": "af.newComponent",
+          "group": "navigation@9"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "af.revealNode",
+          "when": "false"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "af.openPreview",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "editorLangId == af"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "af.editor",
+        "displayName": "answerfield-Editor (Vorschau und Design)",
+        "selector": [
+          {
+            "filenamePattern": "*.af"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "af.structure",
+          "name": "answerfield-Struktur",
+          "when": "af.structureAvailable",
+          "icon": "$(list-tree)"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "af",
+        "path": "./snippets/af.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p . && node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "package": "node esbuild.mjs --minify && vsce package --no-dependencies --allow-missing-repository --skip-license",
+    "test:integration": "node test-integration/run.mjs"
+  },
+  "dependencies": {
+    "@answerfield/bundle": "https://github.com/answerfield/af-format/releases/download/v0.1.0/answerfield-bundle-0.1.0.tgz",
+    "@answerfield/compiler": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-compiler-0.1.0.tgz",
+    "@answerfield/editing": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-editing-0.1.0.tgz",
+    "@answerfield/language": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-language-0.1.0.tgz",
+    "@answerfield/stdlib": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-stdlib-0.1.0.tgz",
+    "@answerfield/studio-ui": "0.1.0",
+    "langium": "~4.4.0",
+    "vscode-languageclient": "~10.1.2",
+    "vscode-languageserver": "~10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "~1.91.0",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "^4.1.0",
+    "esbuild": "~0.28.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/answerfield/af-studio",
+    "directory": "packages/vscode"
+  }
+}
