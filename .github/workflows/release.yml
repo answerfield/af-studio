@@ -19,20 +19,22 @@ jobs:
       PACKAGES: |
         packages/studio-ui
         packages/designer
+        apps/playground/dist
       # Release URL of every package a packed package.json names; there the URL stands instead of the version.
       RELEASE_URLS: |
         {
           "@answerfield/bundle": "https://github.com/answerfield/af-format/releases/download/v0.1.0/answerfield-bundle-0.1.0.tgz",
           "@answerfield/compiler": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-compiler-0.1.0.tgz",
-          "@answerfield/designer": "https://github.com/answerfield/af-studio/releases/download/v0.1.1/answerfield-designer-0.1.1.tgz",
+          "@answerfield/designer": "https://github.com/answerfield/af-studio/releases/download/v0.1.2/answerfield-designer-0.1.2.tgz",
           "@answerfield/editing": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-editing-0.1.0.tgz",
           "@answerfield/expr": "https://github.com/answerfield/af-format/releases/download/v0.1.0/answerfield-expr-0.1.0.tgz",
           "@answerfield/language": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-language-0.1.0.tgz",
+          "@answerfield/playground": "https://github.com/answerfield/af-studio/releases/download/v0.1.2/answerfield-playground-0.1.2.tgz",
           "@answerfield/practice": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-practice-0.1.0.tgz",
           "@answerfield/runtime-core": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-runtime-core-0.1.0.tgz",
           "@answerfield/runtime-wc": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-runtime-wc-0.1.0.tgz",
           "@answerfield/stdlib": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-stdlib-0.1.0.tgz",
-          "@answerfield/studio-ui": "https://github.com/answerfield/af-studio/releases/download/v0.1.1/answerfield-studio-ui-0.1.1.tgz"
+          "@answerfield/studio-ui": "https://github.com/answerfield/af-studio/releases/download/v0.1.2/answerfield-studio-ui-0.1.2.tgz"
         }
       # Folders of VS Code extensions: each is packed as <name>-<version>.vsix (npm run package).
       VSIX: |

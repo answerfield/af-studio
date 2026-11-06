@@ -1,7 +1,6 @@
 {
   "name": "@answerfield/playground",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.2",
   "type": "module",
   "description": "Web-Editor: answerfield-Quelltext links, Vorschau rechts; Sprache und Compiler laufen im Browser",
   "scripts": {
@@ -13,7 +12,7 @@
     "@answerfield/compiler": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-compiler-0.1.0.tgz",
     "@answerfield/editing": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-editing-0.1.0.tgz",
     "@answerfield/language": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-language-0.1.0.tgz",
-    "@answerfield/studio-ui": "0.1.1",
+    "@answerfield/studio-ui": "0.1.2",
     "@codemirror/autocomplete": "^6.20.4",
     "@codemirror/language": "^6.13.1",
     "@codemirror/lint": "^6.9.7",
@@ -26,5 +25,11 @@
   },
   "devDependencies": {
     "esbuild": "~0.28.2"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/answerfield/af-studio",
+    "directory": "apps/playground"
   }
 }

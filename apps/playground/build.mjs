@@ -59,4 +59,28 @@ if (serve) {
 } else {
     await ctx.rebuild();
     await ctx.dispose();
+    releasePackage();
+}
+
+/**
+ * dist/ as a package of its own (release file of af-studio, used by the docs site): package.json with name, version,
+ * description, license and repository of the app, its LICENSE, and a README naming the license of the examples.
+ */
+function releasePackage() {
+    const app = JSON.parse(readFileSync(join(here, 'package.json'), 'utf8'));
+    const fields = Object.fromEntries(['name', 'version', 'description', 'license', 'repository'].filter(k => k in app).map(k => [k, app[k]]));
+    writeFileSync(join(out, 'package.json'), `${JSON.stringify(fields, null, 2)}\n`);
+    try {
+        copyFileSync(join(here, 'LICENSE'), join(out, 'LICENSE'));
+    } catch {
+        // no LICENSE next to the app (inside the monorepo); the exported repository has one
+    }
+    writeFileSync(join(out, 'README.md'), [
+        `# ${app.name}`,
+        '',
+        'Der gebaute Playground: statische Dateien, die ein Webserver ausliefert (index.html, app.js, worker.js,',
+        'studio.html, studio.js). Die Beispielaufgaben unter examples/ stehen unter CC0-1.0, alles andere unter der',
+        'Lizenz in LICENSE.',
+        ''
+    ].join('\n'));
 }
