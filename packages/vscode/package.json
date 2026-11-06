@@ -2,7 +2,7 @@
   "name": "af-vscode",
   "displayName": "answerfield",
   "description": "Sprachunterstützung für die Aufgabensprache answerfield (.af)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "indibit",
   "license": "Apache-2.0",
   "engines": {
@@ -150,7 +150,7 @@
     "@answerfield/editing": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-editing-0.1.0.tgz",
     "@answerfield/language": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-language-0.1.0.tgz",
     "@answerfield/stdlib": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-stdlib-0.1.0.tgz",
-    "@answerfield/studio-ui": "0.1.0",
+    "@answerfield/studio-ui": "0.1.1",
     "langium": "~4.4.0",
     "vscode-languageclient": "~10.1.2",
     "vscode-languageserver": "~10.1.0"

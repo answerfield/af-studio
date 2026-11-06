@@ -1,6 +1,6 @@
 {
   "name": "@answerfield/studio-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "files": [
     "out",
@@ -33,7 +33,7 @@
     "@answerfield/runtime-core": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-runtime-core-0.1.0.tgz",
     "@answerfield/runtime-wc": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-runtime-wc-0.1.0.tgz",
     "@answerfield/practice": "https://github.com/answerfield/af-runtime/releases/download/v0.1.0/answerfield-practice-0.1.0.tgz",
-    "@answerfield/designer": "0.1.0"
+    "@answerfield/designer": "0.1.1"
   },
   "devDependencies": {
     "@answerfield/compiler": "https://github.com/answerfield/af-language/releases/download/v0.1.0/answerfield-compiler-0.1.0.tgz",
